@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.CustomerMapper" >
+    <insert id="insert" parameterType="cn.e3mall.pojo.Customer">
+        <selectKey keyProperty="id" resultType="int" order="BEFORE">
+            select if(max(id) is null , 1 , max(id) + 1) as id from Customer
+        </selectKey>
+		insert into Customer (id,name,jym_session_id,project_id,url,ctime,utime) values (#{id},#{name},#{jym_session_id},#{project_id},#{url},#{ctime},#{utime});
+	</insert>
+
+    <update id="update" parameterType="cn.e3mall.pojo.Customer">
+        update Customer set name=#{name},jym_session_id=#{jym_session_id},project_id=#{project_id},utime=#{utime},url=#{url} where id=#{id}
+    </update>
+
+
+    <!--List查询-->
+    <resultMap type="cn.e3mall.pojo.Customer" id="CustomerResultMap">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+        <result property="jym_session_id" column="jym_session_id" />
+        <result property="project_id" column="project_id" />
+        <result property="url" column="url" />
+        <result property="ctime" column="ctime" />
+        <result property="utime" column="utime" />
+        <!-- association ：配置一对一属性 -->
+        <!-- property:order里面的User属性名 -->
+        <!-- javaType:属性类型 -->
+        <association property="project" javaType="cn.e3mall.pojo.Project">
+            <!-- id:声明主键，表示user_id是关联查询对象的唯一标识-->
+            <id property="project_id" column="project_id" />
+            <result property="Projectname" column="Projectname" />
+            <result property="project_ctime" column="project_ctime" />
+        </association>
+    </resultMap>
+    <!-- 一对一关联，查询订单，订单内部包含用户属性 -->
+    <select id="queryListResultMap" resultMap="CustomerResultMap">
+	      SELECT * FROM `Customer` o LEFT JOIN `project` p ON o.project_id=p.project_id
+    </select>
+
+    <select id="queryByProjectid" resultType="cn.e3mall.pojo.Customer" parameterType="String" >
+        select * from customer where project_id=#{project_id}
+    </select>
+</mapper>

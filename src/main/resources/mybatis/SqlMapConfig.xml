@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 加载映射文件 -->
+    <mappers>
+        <mapper resource="cn/e3mall/mapper/TestCaseMapper.xml" />
+        <mapper resource="cn/e3mall/mapper/TestCaseDetailMapper.xml" />
+        <mapper resource="cn/e3mall/mapper/CaseActionMapper.xml" />
+        <mapper resource="cn/e3mall/mapper/TestCaseFunctionMapper.xml" />
+        <mapper resource="cn/e3mall/mapper/OperationPoolMapper.xml" />
+        <mapper resource="cn/e3mall/mapper/ProjectMapper.xml" />
+    </mappers>
+</configuration>

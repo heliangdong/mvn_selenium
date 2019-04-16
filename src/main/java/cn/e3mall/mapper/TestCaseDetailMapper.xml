@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.TestCaseDetailMapper" >
+    <select id="queryTestCaseDetailBytestcaseid" parameterType="int"
+            resultType="cn.e3mall.pojo.TestCaseDetail">
+		select * from TestCaseDetail where testcaseid = #{id}
+	</select>
+
+	<insert id="TestCaseDetailSave" parameterType="cn.e3mall.pojo.TestCaseDetail" >
+		<selectKey keyColumn="id" keyProperty="id" order="BEFORE"
+				   resultType="int">
+			 select if(max(id) is null , 1 , max(id) + 1) as id from testcasedetail
+		</selectKey>
+		insert into TestCaseDetail (id,caseactionid,element,ctime,Remarks,testcaseid)values(#{id},#{caseactionid},#{element},#{ctime},#{Remarks},#{testcaseid})
+	</insert>
+
+	<select id="queryElementBycaseactionid" parameterType="int"
+			resultType="cn.e3mall.pojo.TestCaseDetail">
+		select * from TestCaseDetail where caseactionid='3' and testcaseid = #{id}
+	</select>
+    <!--删除-->
+    <delete id="deleteTestcaseDetailBytestcaseid" parameterType="int">
+		delete  from TestCaseDetail where testcaseid = #{id}
+	</delete>
+</mapper>

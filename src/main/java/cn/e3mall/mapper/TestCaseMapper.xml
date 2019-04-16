@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.TestCaseMappper" >
+    <select id="queryall" resultType="cn.e3mall.pojo.TestCase">
+		SELECT * FROM `testcase` o LEFT JOIN `project` u ON o.projectid = u.project_id
+	</select>
+	<!-- 保存 -->
+	<insert id="TestCaseSave" parameterType="cn.e3mall.pojo.TestCase" >
+		insert into TestCase (id,name,status,ctime,utime,projectid,remarks)values(#{id},#{name},#{status},#{ctime},#{utime},#{projectid},#{remarks})
+	</insert>
+	<!--获取ID，用于新增 关联-->
+	<select id="queryMaxId" resultType="int">
+		select if(max(id) is null , 1 , max(id) + 1) as id from TestCase
+	</select>
+	<!--针对ID获取对象-->
+	<select id="queryTestCaseById" parameterType="int" resultType="cn.e3mall.pojo.TestCase">
+		select * from TestCase where id=#{id}
+	</select>
+    <!--修改保存-->
+    <update id="TestCaseUpdateAndSave" parameterType="cn.e3mall.pojo.TestCase" >
+		update TestCase set name=#{name},utime=#{utime} where id=#{id}
+	</update>
+    <!--删除-->
+    <delete id="TestCaseDeleteByid" parameterType="int">
+		delete from TestCase where id=#{id}
+	</delete>
+	<select id="queryaByCondition" parameterType="cn.e3mall.pojo.TestCase" resultType="cn.e3mall.pojo.TestCase">
+		SELECT * FROM `testcase` o LEFT JOIN `project` u ON o.projectid = u.project_id where 1=1
+		<if test="projectid!=null">
+			and projectid=#{projectid}
+		</if>
+	</select>
+</mapper>

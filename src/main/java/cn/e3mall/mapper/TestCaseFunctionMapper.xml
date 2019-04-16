@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.TestCaseFunctionMapper" >
+    <select id="queryall" resultType="cn.e3mall.pojo.TestCaseFunction">
+		select * from TestCaseFunction
+	</select>
+	<select id="queryallByid" resultType="cn.e3mall.pojo.TestCaseFunction">
+		select * from TestCaseFunction where id=#{id}
+	</select>
+	<select id="queryZindex" resultType="Integer">
+		select if(max(zindex) is null , 1 , max(zindex) + 1) as zindex from testcasefunction where pid=11
+	</select>
+	<insert id="insert" parameterType="cn.e3mall.pojo.TestCaseFunction">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			select if(max(id) is null , 1 , max(id) + 1) as id from testcasefunction
+		</selectKey>
+		insert into testcasefunction (id,pId,name,page,testcaseid,projectid)values (#{id},#{pId},#{name},#{page},#{testcaseid},#{projectid})
+	</insert>
+	<delete id="deleteByProjectid" parameterType="String">
+		delete from TestCaseFunction where projectid=#{projectid}
+	</delete>
+	<delete id="deleteByTestcaseid" parameterType="int">
+		delete from TestCaseFunction where testcaseid=#{testcaseid}
+	</delete>
+	<select id="querypIdByprojectid" parameterType="String" resultType="String">
+		select * from TestCaseFunction where projectid=#{projectid}
+	</select>
+	<update id="updateNameByTestcaseid" parameterType="cn.e3mall.pojo.TestCaseFunction" >
+		update TestCaseFunction set name=#{name} where testcaseid=#{testcaseid}
+	</update>
+</mapper>
