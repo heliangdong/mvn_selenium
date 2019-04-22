@@ -24,6 +24,11 @@ public class PageController {
         return page;
     }
 
+    @RequestMapping("/admin/{page}")
+    public String showPage1(@PathVariable String page){
+        return "admin/"+page;
+    }
+
     //ajax加载菜单
     @RequestMapping(value = "json/menu", method = RequestMethod.POST)
     public void ajaxDatas(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -42,6 +47,18 @@ public class PageController {
                 "\t\t{ \"id\":\"13\", \"pId\":\"0\", \"name\":\"调度\"},\n" +
                 "\t\t{ \"id\":\"131\", \"pId\":\"13\", \"name\":\"查台转单\",\"page\":\"\"},\n" +
                 "\t\t{ \"id\":\"132\", \"pId\":\"13\", \"name\":\"人工调度\",\"page\":\"page_qupai_diaodu.action\"}\n" +
+                "]");
+    }
+
+    //ajax加载菜单
+    @RequestMapping(value = "json/admin", method = RequestMethod.POST)
+    public void ajaxadmin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setHeader("Content-type", "text/html;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("[\n" +
+                "\t\t{ \"id\":\"1001\", \"pId\":\"100\", \"name\":\"用户管理\", \"page\":\"admin/userlist\"},\n" +
+                "\t\t{ \"id\":\"1002\", \"pId\":\"100\", \"name\":\"功能权限管理\", \"page\":\"admin/function\"},\n" +
+                "\t\t{ \"id\":\"1003\", \"pId\":\"100\", \"name\":\"角色管理\", \"page\":\"admin/role\"}\n" +
                 "]");
     }
 

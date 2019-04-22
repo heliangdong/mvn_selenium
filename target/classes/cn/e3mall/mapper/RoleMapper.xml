@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.RoleMapper" >
+    <insert id="save" parameterType="cn.e3mall.pojo.Role">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            select if(max(id) is null , 1 , max(id) + 1) as id from Role
+        </selectKey>
+        insert into role (id,name,code,description,functionIds) values (#{id},#{name},#{code},#{description},#{functionIds})
+    </insert>
+
+    <select id="QueryAll" resultType="cn.e3mall.pojo.Role">
+        select * from  role
+    </select>
+</mapper>

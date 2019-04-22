@@ -29,8 +29,8 @@
                 /images/** = anon
                 /validatecode.jsp* = anon
                 /login.jsp = anon
-                /userAction_login.action = anon
-                /page_base_staff.action = perms["staff-list"]
+                /LoginController_login = anon
+                /staff1 = perms["ProjectController_list"]
                 /* = authc
             </value>
         </property>

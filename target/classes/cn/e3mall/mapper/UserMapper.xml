@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.UserMapper" >
+    <select id="queryByusername" parameterType="String" resultType="cn.e3mall.pojo.User">
+		select * from user where  username=#{username}
+	</select>
+	<insert id="save" parameterType="cn.e3mall.pojo.User">
+		<selectKey keyProperty="id" resultType="String" order="BEFORE">
+			select if(max(id) is null , 1 , max(id) + 1) as project_id from user
+		</selectKey>
+		insert into user(id,username,password,role_id)values (#{id},#{username},#{password},#{role_id})
+	</insert>
+</mapper>

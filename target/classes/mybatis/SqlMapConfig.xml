@@ -11,5 +11,6 @@
         <mapper resource="cn/e3mall/mapper/TestCaseFunctionMapper.xml" />
         <mapper resource="cn/e3mall/mapper/OperationPoolMapper.xml" />
         <mapper resource="cn/e3mall/mapper/ProjectMapper.xml" />
+        <mapper resource="cn/e3mall/mapper/UserMapper.xml" />
     </mappers>
 </configuration>

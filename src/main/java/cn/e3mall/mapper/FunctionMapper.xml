@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.e3mall.mapper.FunctionMapper" >
+    <select id="selectAll" resultType="cn.e3mall.pojo.Function">
+        select * from auth_function
+    </select>
+    <insert id="saveFunction" parameterType="cn.e3mall.pojo.Function">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            select if(max(id) is null , 1 , max(id) + 1) as id from auth_function
+        </selectKey>
+        insert into auth_function (id,name,code,description,page,generatemenu,zindex,pid) values (#{id},#{name},#{code},#{description},#{page},#{generatemenu},#{zindex},#{pid})
+    </insert>
+</mapper>

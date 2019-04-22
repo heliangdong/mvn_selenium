@@ -57,7 +57,7 @@
 		
 		// 系统管理菜单加载
 		$.ajax({
-			url : '${pageContext.request.contextPath}/json/admin.json',
+			url : '${pageContext.request.contextPath}/json/admin',
 			type : 'POST',
 			dataType : 'text',
 			success : function(data) {
