@@ -11,4 +11,7 @@
     <select id="QueryAll" resultType="cn.e3mall.pojo.Role">
         select * from  role
     </select>
+    <select id="QueryByid" parameterType="String" resultType="cn.e3mall.pojo.Role">
+        select * from  role where id=#{id}
+    </select>
 </mapper>

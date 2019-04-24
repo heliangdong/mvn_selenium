@@ -7,4 +7,5 @@ import java.util.List;
 public interface RoleMapper {
      void save(Role role);
      List<Role> QueryAll();
+     Role QueryByid(String id);
 }

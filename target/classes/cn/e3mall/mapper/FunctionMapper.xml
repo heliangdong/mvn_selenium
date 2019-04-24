@@ -4,6 +4,9 @@
     <select id="selectAll" resultType="cn.e3mall.pojo.Function">
         select * from auth_function
     </select>
+    <select id="querybyid" resultType="cn.e3mall.pojo.Function">
+        select * from auth_function where id=#{id}
+    </select>
     <insert id="saveFunction" parameterType="cn.e3mall.pojo.Function">
         <selectKey keyProperty="id" resultType="String" order="BEFORE">
             select if(max(id) is null , 1 , max(id) + 1) as id from auth_function
