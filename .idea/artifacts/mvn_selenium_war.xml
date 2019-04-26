@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="mvn_selenium:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="mvn_selenium-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="mvn_selenium:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -29,11 +29,17 @@ public class BOSRealm extends AuthorizingRealm {
     //授权
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+//        info.addStringPermission("ProjectController_list");
+//        info.addStringPermission("ProjectController_list11111");
         User user=(User)SecurityUtils.getSubject().getPrincipal();
         //根据用户获取用户对应的权限
         List<Function> functionList=null;
+        System.out.println("开始授权");
         if(user.getUsername().equals("admin")){
             functionList=functionMapper.selectAll();
+            for(Function function:functionList){
+                info.addStringPermission(function.getPage());
+            }
         }else{
             //根据用户查询角色
             Role role = roleMapper.QueryByid(user.getRole_id());
@@ -43,7 +49,7 @@ public class BOSRealm extends AuthorizingRealm {
             //根据functionId查询权限表
             for(String id:functionId){
                 Function function = functionMapper.querybyid(id);
-                info.addStringPermission(function.getCode());
+                info.addStringPermission(function.getPage());
             }
 
         }
@@ -59,6 +65,7 @@ public class BOSRealm extends AuthorizingRealm {
         //根据用户名查询数据库中的密码
         User user = userMapper.queryByusername(username);
         if(user==null){
+
             //用户名不存在
             return null;
         }
