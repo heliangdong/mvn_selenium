@@ -4,8 +4,17 @@
     <select id="selectAll" resultType="cn.e3mall.pojo.Function">
         select * from auth_function
     </select>
-    <select id="querybyid" resultType="cn.e3mall.pojo.Function">
+    <select id="querybyid" parameterType="String" resultType="cn.e3mall.pojo.Function">
         select * from auth_function where id=#{id}
+    </select>
+    <select id="querybyidandmenu"  resultType="cn.e3mall.pojo.Function">
+        select * from auth_function where  generatemenu=1 and id IN
+        <foreach collection="array" item="id" index="index" open="(" close=")" separator=",">
+        #{id}
+        </foreach>
+    </select>
+    <select id="queryAllbasemenu"  resultType="cn.e3mall.pojo.Function">
+        select * from auth_function where  generatemenu=1
     </select>
     <insert id="saveFunction" parameterType="cn.e3mall.pojo.Function">
         <selectKey keyProperty="id" resultType="String" order="BEFORE">

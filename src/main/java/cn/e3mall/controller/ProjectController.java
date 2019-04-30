@@ -2,6 +2,7 @@ package cn.e3mall.controller;
 
 import cn.e3mall.pojo.Project;
 import cn.e3mall.service.ProjectService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @RequiresPermissions("ProjectController_list")
     @RequestMapping("ProjectController_list")
     @ResponseBody
     public List<Project> list(){
@@ -29,7 +31,10 @@ public class ProjectController {
         return modelAndView;
     }
 
+
+
     @RequestMapping("ProjectController_delete")
+    @RequiresPermissions("ProjectController_delete")
     public ModelAndView delete(String ids){
         String[] id = ids.split(",");
         ModelAndView modelAndView=new ModelAndView();

@@ -8,4 +8,6 @@ public interface FunctionMapper {
     List<Function> selectAll();
     void saveFunction(Function function);
     Function querybyid(String id);
+    List<Function>   querybyidandmenu(String[] id);
+    List<Function> queryAllbasemenu();
 }

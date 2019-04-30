@@ -9,8 +9,5 @@
         <module name="mvn_selenium" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="mvn_selenium" target="1.5" />
-    </bytecodeTargetLevel>
   </component>
 </project>

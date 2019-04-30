@@ -20,6 +20,8 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
+
+
 	<!-- 配置spring框架提供的用于整合shiro框架的过滤器 -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>

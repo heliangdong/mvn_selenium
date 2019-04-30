@@ -30,11 +30,13 @@
                 /validatecode.jsp* = anon
                 /login.jsp = anon
                 /LoginController_login = anon
-                /staff1 = perms["ProjectController_list"]
+                <!--/staff1 = perms["ProjectController_list"]-->
                 /* = authc
             </value>
         </property>
     </bean>
+
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
 
     <!-- 注册安全管理器对象 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
@@ -45,6 +47,13 @@
 
     <!-- 注册realm -->
     <bean id="bosRealm" class="cn.e3mall.realm.BOSRealm"></bean>
+
+    <!-- 开启shiro框架注解支持 -->
+    <bean id="defaultAdvisorAutoProxyCreator"
+          class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator">
+        <!-- 必须使用cglib方式为Action对象创建代理对象 -->
+        <property name="proxyTargetClass" value="false"/>
+    </bean>
 
     <!-- 注册缓存管理器 -->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">

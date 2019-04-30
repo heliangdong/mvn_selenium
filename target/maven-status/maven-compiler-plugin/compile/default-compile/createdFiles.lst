@@ -13,6 +13,7 @@ cn\e3mall\controller\RoleController.class
 cn\e3mall\service\FunctionService.class
 cn\e3mall\controller\SeleniumController.class
 cn\e3mall\mapper\CaseActionlMapper.class
+cn\e3mall\utils\getUserName.class
 cn\e3mall\service\TestCaseService.class
 cn\e3mall\service\SeleniumService.class
 cn\e3mall\controller\FunctionController.class
@@ -47,6 +48,7 @@ cn\e3mall\realm\BOSRealm.class
 cn\e3mall\service\impl\OperationPoolServiceImpl.class
 cn\e3mall\service\impl\FunctionServiceImpl.class
 cn\e3mall\controller\UserController.class
+cn\e3mall\controller\Exception\SpringHandlerExceptionResolver.class
 cn\e3mall\service\impl\CustomerServiceImpl.class
 cn\e3mall\pojo\Role.class
 cn\e3mall\service\impl\CaseActionServiceImpl.class

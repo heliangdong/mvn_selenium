@@ -38,7 +38,7 @@ public class BOSRealm extends AuthorizingRealm {
         if(user.getUsername().equals("admin")){
             functionList=functionMapper.selectAll();
             for(Function function:functionList){
-                info.addStringPermission(function.getPage());
+                info.addStringPermission(function.getCode());
             }
         }else{
             //根据用户查询角色
@@ -49,7 +49,7 @@ public class BOSRealm extends AuthorizingRealm {
             //根据functionId查询权限表
             for(String id:functionId){
                 Function function = functionMapper.querybyid(id);
-                info.addStringPermission(function.getPage());
+                info.addStringPermission(function.getCode());
             }
 
         }
